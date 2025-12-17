@@ -1,0 +1,201 @@
+:root {
+    --dark: #3B4443;
+    --sage: #7D948E;
+    --peach: #EAAFA9;
+    --light: #EFD0CE;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.7;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, var(--dark), var(--sage));
+    color: var(--white);
+    padding: 30px 20px;
+    border-radius: 0 0 30px 30px;
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+marquee {
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* NAV */
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN */
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+section h2 {
+    margin-bottom: 20px;
+    color: var(--sage);
+}
+
+/* LAYOUT */
+.content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.reverse {
+    grid-template-columns: 1fr 1.2fr;
+}
+
+/* IMAGES */
+img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* MEDIA */
+audio, video {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: var(--sage);
+    color: var(--white);
+}
+
+td, th {
+    padding: 15px;
+    border: 1px solid var(--light);
+    vertical-align: top;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--peach);
+    border-radius: 30px 30px 0 0;
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===== CSS CAROUSEL (NO JS) ===== */
+.carousel {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.carousel input {
+    display: none;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.carousel img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* controls */
+.carousel-controls {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.carousel-controls label {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: var(--sage);
+    border-radius: 50%;
+    margin: 0 6px;
+    cursor: pointer;
+}
+
+input:checked + label {
+    background: var(--dark);
+}
+
+/* slide logic */
+#slide1:checked ~ .carousel-track { transform: translateX(0); }
+#slide2:checked ~ .carousel-track { transform: translateX(-100%); }
+#slide3:checked ~ .carousel-track { transform: translateX(-200%); }
+#slide4:checked ~ .carousel-track { transform: translateX(-300%); }
+#slide5:checked ~ .carousel-track { transform: translateX(-400%); }
+#slide6:checked ~ .carousel-track { transform: translateX(-500%); }
+
+/* mobile */
+@media (max-width: 768px) {
+    .carousel img {
+        height: 260px;
+    }
+}
+
