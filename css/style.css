@@ -1,154 +1,137 @@
 :root {
-  --bg: #f6f5f3;
-  --text: #2f2f2f;
-  --accent: #7d948e;
-  --soft: #e7e3df;
+    --dark: #3B4443;
+    --sage: #7D948E;
+    --peach: #EAAFA9;
+    --light: #EFD0CE;
+    --white: #ffffff;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--light);
+    color: var(--dark);
 }
 
-/* HEADER */
-header {
-  background: var(--accent);
-  color: #fff;
-  padding: 14px 18px;
+/* ===== HEADER ===== */
+.top {
+    background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.top-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav h1 {
-  font-size: 17px;
-  margin: 0;
+.logo {
+    font-weight: 600;
+    font-size: 18px;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 12px;
-  padding: 0;
-  margin: 0;
-  flex-wrap: wrap;
+.menu a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
 }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
+.menu a.active,
+.menu a:hover {
+    color: var(--sage);
 }
 
-/* MARQUEE */
-.marquee {
-  background: var(--soft);
-  overflow: hidden;
-  padding: 6px 0;
+/* ===== HERO ===== */
+.hero {
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 24px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
 }
 
-.marquee span {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: marquee 14s linear infinite;
-  font-size: 13px;
+.hero-text h1 {
+    font-size: 46px;
+    line-height: 1.2;
+    margin-bottom: 20px;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+.hero-text p {
+    font-size: 16px;
+    max-width: 420px;
+    opacity: 0.9;
 }
 
-/* CONTENT */
-section {
-  padding: 22px 18px;
-  max-width: 900px;
-  margin: auto;
+.hero-image img {
+    width: 100%;
+    border-radius: 26px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
 }
 
-h2 {
-  margin-top: 0;
+/* ===== ABOUT ===== */
+.about-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
 }
 
-.accent-line {
-  width: 50px;
-  height: 3px;
-  background: var(--accent);
-  margin: 10px 0 18px 0;
-  border-radius: 2px;
+.about-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 26px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
 }
 
-.highlight {
-  background: var(--soft);
-  padding: 18px;
-  border-radius: 14px;
+.about-card h2 {
+    margin-bottom: 20px;
 }
 
-/* PHOTO COMPOSITION */
-.photo-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 20px;
+.about-card p {
+    margin-bottom: 16px;
+    line-height: 1.7;
 }
 
-.photo-layout img {
-  width: 100%;
-  border-radius: 14px;
-  object-fit: cover;
+.about-photo img {
+    width: 100%;
+    border-radius: 26px;
+    object-fit: cover;
 }
 
-.photo-layout .big {
-  grid-column: 1 / -1;
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 14px;
+    opacity: 0.7;
 }
 
-/* GALLERY (for other pages) */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 20px;
-}
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+    .hero,
+    .about-section {
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+    }
 
-.gallery img {
-  width: 100%;
-  border-radius: 14px;
-}
+    .hero-text h1 {
+        font-size: 34px;
+    }
 
-/* MEDIA */
-video, audio {
-  width: 100%;
-  margin-top: 20px;
-}
-
-/* TABLE */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th, td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 18px;
-  font-size: 13px;
-  color: #666;
+    .menu {
+        display: none;
+    }
 }
