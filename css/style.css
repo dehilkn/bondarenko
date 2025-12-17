@@ -94,12 +94,16 @@ nav a.active {
 }
 
 /* HERO IMAGE */
-.hero-photo img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-    display: block;
+.hero-img img{
+  width:100%;
+  max-width:420px;        /* ← головне обмеження */
+  max-height:520px;
+  margin:0 auto;          /* центр */
+  display:block;
+
+  border-radius:26px;
+  box-shadow:0 22px 60px rgba(0,0,0,.18);
+  object-fit:cover;
 }
 
 /* SECTIONS */
