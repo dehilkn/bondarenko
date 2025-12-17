@@ -1,87 +1,64 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Про мене — Бондаренко Олександра</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Родина — Бондаренко Олександра</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="top">
-  <div class="top-inner">
-    <div class="logo">Бондаренко Олександра</div>
-    <nav class="menu">
-      <a class="active" href="index.html">Про мене</a>
-      <a href="family.html">Родина</a>
-      <a href="education.html">Навчання</a>
-      <a href="hobbies.html">Хобі</a>
-      <a href="dreams.html">Мрії</a>
-    </nav>
-  </div>
-  <div class="marquee"><span>Студентка · Саморозвиток · Навчання · Майбутнє · Натхнення ·</span></div>
+    <div class="top-inner">
+        <div class="logo">Бондаренко Олександра</div>
+        <nav class="menu">
+            <a href="../index.html">Про мене</a>
+            <a href="family.html" class="active">Родина</a>
+            <a href="education.html">Навчання</a>
+            <a href="hobbies.html">Хобі</a>
+            <a href="dreams.html">Мрії</a>
+        </nav>
+    </div>
 </header>
 
 <main class="wrap">
 
-  <section class="hero">
-    <div>
-      <h1>Про мене</h1>
-      <p>
-        Мене звати Бондаренко Олександра Олегівна. Мені 18 років. Я є студенткою Донецького національного університету імені Василя Стуса, де здобуваю вищу освіту. Родом я з Чернівецької області, міста Новодністровськ. Наразі навчаюся та прагну професійного розвитку, поглиблюючи свої знання й навички для майбутньої самореалізації.
-      </p>
+    <!-- Headline / Hero -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Родина</h1>
+            <p>
+                Я маю чудову, дружну та люблячу сім’ю: мою маму — Бондаренко Ольгу, тата — Бондаренка Олега та старшу сестру — Кримняк Мар’яну. Саме підтримка родини, їхня віра в мене та постійне заохочення допомагають упевнено рухатися вперед, розвиватися та досягати поставлених цілей.
+            </p>
+        </div>
+        <div class="hero-img">
+            <img src="../assets/img/family1.jpg" alt="Фото родини">
+        </div>
+    </section>
 
-      <div class="badges">
-        <span class="badge">Чернівецька область</span>
-        <span class="badge">Новодністровськ</span>
-        <span class="badge">ДонНУ ім. Василя Стуса</span>
-      </div>
+    <!-- Посилання -->
+    <section class="section">
+        <p class="small-links">
+            🔗 Внутрішнє посилання: <a href="#family-photos">перейти до фото</a><br>
+            🔗 Зовнішнє посилання: <a href="https://uk.wikipedia.org/wiki/Сім’я" target="_blank" rel="noopener">що таке сім’я (Вікіпедія)</a>
+        </p>
+    </section>
 
-      <!-- Зовнішнє посилання (потрібно по умовах) -->
-      <p style="margin-top:14px;">
-        Зовнішнє посилання:
-        <a href="https://www.donnu.edu.ua/" target="_blank" rel="noopener">сайт університету</a>
-      </p>
-
-      <!-- Внутрішнє посилання (якір) -->
-      <p>
-        Внутрішнє посилання:
-        <a href="#photos">перейти до фото</a>
-      </p>
-    </div>
-
-    <div class="hero-media">
-      <img src="assets/img/author1.jpg" alt="Олександра — фото 1">
-    </div>
-  </section>
-
-  <section class="section" id="photos">
-    <div class="card">
-      <h2>Фото</h2>
-      <p>Нижче — мої фото (2 шт.).</p>
-      <div class="badges">
-        <span class="badge">Мінімалізм</span>
-        <span class="badge">Акценти</span>
-      </div>
-    </div>
-
-    <div class="gallery">
-      <a class="g-12" href="assets/img/author2.jpg">
-        <img class="ph" src="assets/img/author2.jpg" alt="Олександра — фото 2">
-      </a>
-    </div>
-  </section>
-
-  <!-- Навігація по сторінках на головній -->
-  <section class="nav-cards">
-    <a href="family.html" class="nav-card"><span>Родина</span><p>Мої близькі та підтримка</p></a>
-    <a href="education.html" class="nav-card"><span>Навчання</span><p>Школа + відео з випускного</p></a>
-    <a href="hobbies.html" class="nav-card"><span>Хобі</span><p>Малювання + улюблена пісня</p></a>
-    <a href="dreams.html" class="nav-card"><span>Мрії</span><p>Плани та перспективи (таблиця)</p></a>
-  </section>
+    <!-- Галерея фото -->
+    <section class="section" id="family-photos">
+        <h2>Фото родини</h2>
+        <div class="gallery">
+            <a class="col-6" href="../assets/img/family1.jpg"><img class="ph" src="../assets/img/family1.jpg" alt="Родина 1"></a>
+            <a class="col-6" href="../assets/img/family2.jpg"><img class="ph" src="../assets/img/family2.jpg" alt="Родина 2"></a>
+            <a class="col-12" href="../assets/img/family3.jpg"><img class="ph" src="../assets/img/family3.jpg" alt="Родина 3"></a>
+        </div>
+    </section>
 
 </main>
 
-<footer class="footer">© Бондаренко Олександра</footer>
+<footer class="footer">
+    © Бондаренко Олександра
+</footer>
+
 </body>
 </html>
