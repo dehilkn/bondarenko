@@ -1,78 +1,201 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Бондаренко Олександра</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бондаренко Олександра</title>
+
+<style>
+:root{
+  --dark:#3B4443;
+  --sage:#7D948E;
+  --peach:#EAAFA9;
+  --light:#EFD0CE;
+  --white:#ffffff;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:var(--light);
+  color:var(--dark);
+  line-height:1.7;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--sage);
+  color:white;
+  padding:18px 24px;
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+header h1{
+  font-size:20px;
+  font-weight:700;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:16px;
+  font-size:14px;
+  opacity:.9;
+}
+nav a:hover{opacity:1}
+
+/* ===== MARQUEE ===== */
+.marquee{
+  background:var(--peach);
+  overflow:hidden;
+  white-space:nowrap;
+}
+.marquee span{
+  display:inline-block;
+  padding:10px 0;
+  animation:scroll 18s linear infinite;
+}
+@keyframes scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* ===== MAIN ===== */
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 24px;
+}
+
+/* ===== HERO ===== */
+.hero{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.hero h2{
+  font-size:44px;
+  line-height:1.2;
+  margin-bottom:16px;
+}
+
+.hero p{
+  font-size:16px;
+  max-width:520px;
+  opacity:.9;
+}
+
+.hero-tags{
+  margin-top:14px;
+  font-size:14px;
+  opacity:.8;
+}
+
+/* HERO IMAGE */
+.hero img{
+  width:100%;
+  max-width:420px;
+  max-height:520px;
+  display:block;
+  margin:auto;
+  border-radius:26px;
+  object-fit:cover;
+  box-shadow:0 25px 60px rgba(0,0,0,.2);
+}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--white);
+  border-radius:26px;
+  padding:36px;
+  margin-top:60px;
+  box-shadow:0 20px 50px rgba(0,0,0,.08);
+}
+
+.card h3{
+  font-size:26px;
+  margin-bottom:14px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:28px;
+  font-size:14px;
+  opacity:.7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero h2{font-size:34px}
+  nav{width:100%}
+  nav a{margin-left:0;margin-right:14px}
+}
+</style>
 </head>
+
 <body>
 
-<header class="top">
-    <div class="container nav">
-        <div class="logo">Бондаренко Олександра</div>
-        <nav>
-            <a href="index.html" class="active">Про мене</a>
-            <a href="family.html">Родина</a>
-            <a href="education.html">Навчання</a>
-            <a href="hobbies.html">Хобі</a>
-            <a href="dreams.html">Мрії</a>
-        </nav>
-    </div>
+<header>
+  <div class="header-inner">
+    <h1>Бондаренко Олександра</h1>
+    <nav>
+      <a href="index.html">Про мене</a>
+      <a href="family.html">Родина</a>
+      <a href="study.html">Навчання</a>
+      <a href="hobby.html">Хобі</a>
+      <a href="dreams.html">Мрії</a>
+    </nav>
+  </div>
 </header>
 
-<main class="container card">
+<div class="marquee">
+  <span>Студентка • Саморозвиток • Навчання • Майбутнє • Натхнення • </span>
+</div>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Студентка. Саморозвиток. Майбутнє.</h1>
-            <p class="subtitle">
-                Студентка • Саморозвиток • Навчання • Майбутнє • Натхнення
-            </p>
-        </div>
-        <div class="hero-photo">
-            <img src="assets/img/author2.jpg" alt="Автор">
-        </div>
-    </section>
+<main>
 
-    <!-- ПРО МЕНЕ -->
-    <section class="section">
-        <h2>Про мене</h2>
+<section class="hero">
+  <div>
+    <h2>Студентка.<br>Саморозвиток.<br>Майбутнє.</h2>
 
-        <p>
-            Мене звати <strong>Бондаренко Олександра Олегівна</strong>.
-            Мені 18 років. Я є студенткою Донецького національного університету
-            імені Василя Стуса, де здобуваю вищу освіту.
-        </p>
+    <p>
+      Мене звати Бондаренко Олександра Олегівна. Мені 18 років.
+      Я є студенткою Донецького національного університету імені
+      Василя Стуса, де здобуваю вищу освіту.
+    </p>
 
-        <p>
-            Родом я з Чернівецької області, міста Новодністровськ.
-            Наразі навчаюся та прагну професійного розвитку,
-            поглиблюючи свої знання й навички для майбутньої самореалізації.
-        </p>
+    <p>
+      Родом я з Чернівецької області, міста Новодністровськ.
+      Наразі навчаюся та прагну професійного розвитку,
+      поглиблюючи свої знання й навички для майбутньої самореалізації.
+    </p>
 
-        <p class="links">
-            🔗 Зовнішнє посилання:
-            <a href="https://donnu.edu.ua" target="_blank">сайт університету</a><br>
-            🔗 Внутрішнє посилання:
-            <a href="#photos">перейти до фото</a>
-        </p>
-    </section>
+    <div class="hero-tags">
+      Студентка • Саморозвиток • Навчання • Майбутнє
+    </div>
+  </div>
 
-    <!-- ФОТО -->
-    <section class="section" id="photos">
-        <h2>Фото</h2>
-
-        <div class="gallery">
-            <img src="assets/img/author1.jpg" alt="Фото 2">
-        </div>
-    </section>
+  <img src="assets/img/author1.jpg" alt="Олександра">
+</section>
 
 </main>
 
-<footer class="footer">
-    © Бондаренко Олександра
+<footer>
+© Бондаренко Олександра
 </footer>
 
 </body>
