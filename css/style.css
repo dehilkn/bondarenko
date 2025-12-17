@@ -1,199 +1,186 @@
-:root {
-    --dark: #3B4443;
-    --sage: #7D948E;
-    --peach: #EAAFA9;
-    --light: #EFD0CE;
-    --white: #ffffff;
+:root{
+  --dark:#3B4443;
+  --sage:#7D948E;
+  --peach:#EAAFA9;
+  --light:#EFD0CE;
+  --white:#ffffff;
+  --shadow:0 20px 60px rgba(0,0,0,.10);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:var(--light);
+  color:var(--dark);
+  line-height:1.7;
 }
 
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: var(--light);
-    color: var(--dark);
+/* ===== TOP BAR ===== */
+.top{background:rgba(255,255,255,.92); backdrop-filter: blur(6px); border-bottom:1px solid rgba(0,0,0,.06)}
+.top-inner{
+  max-width:1200px;margin:0 auto;padding:18px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{font-weight:700;font-size:18px;letter-spacing:.2px}
+.menu{display:flex;gap:18px;flex-wrap:wrap}
+.menu a{
+  text-decoration:none;color:var(--dark);font-size:14px;opacity:.92;
+  padding:6px 0;border-bottom:2px solid transparent;
+}
+.menu a:hover{color:var(--sage)}
+.menu a.active{color:var(--sage);border-bottom-color:var(--peach)}
+
+/* ===== TICKER (marquee без <marquee>) ===== */
+.ticker{
+  background:linear-gradient(90deg,var(--peach),#f3bdb8,var(--peach));
+  overflow:hidden;white-space:nowrap;border-bottom:1px solid rgba(0,0,0,.06)
+}
+.ticker span{
+  display:inline-block;padding:10px 0;
+  animation:ticker 16s linear infinite;
+  font-size:14px; letter-spacing:.2px;
+}
+@keyframes ticker{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
 }
 
-/* ===== HEADER ===== */
-.top {
-    background: var(--white);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.top-inner {
-    max-width: 1200px;
-    margin: auto;
-    padding: 18px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.menu a {
-    margin-left: 18px;
-    text-decoration: none;
-    color: var(--dark);
-    font-size: 14px;
-}
-
-.menu a.active,
-.menu a:hover {
-    color: var(--sage);
-}
+/* ===== LAYOUT ===== */
+.wrap{max-width:1200px;margin:0 auto;padding:60px 24px}
+.section{margin-top:26px}
 
 /* ===== HERO ===== */
-.hero {
-    max-width: 1200px;
-    margin: auto;
-    padding: 80px 24px;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
-    align-items: center;
+.hero{
+  max-width:1200px;margin:0 auto;padding:70px 24px 10px;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;
+}
+.hero h1{font-size:46px;line-height:1.18;margin-bottom:18px}
+.hero p{font-size:16px;max-width:520px;opacity:.92}
+.hero .pill{
+  display:inline-block;margin-top:18px;
+  background:rgba(59,68,67,.10);
+  border:1px solid rgba(59,68,67,.12);
+  padding:8px 12px;border-radius:999px;font-size:13px;
+}
+.hero-img img{
+  width:100%;
+  border-radius:26px;
+  box-shadow:0 28px 70px rgba(0,0,0,.18);
+  object-fit:cover;
 }
 
-.hero-text h1 {
-    font-size: 46px;
-    line-height: 1.2;
-    margin-bottom: 20px;
+/* ===== CARD ===== */
+.card{
+  background:var(--white);
+  border-radius:26px;
+  box-shadow:var(--shadow);
+  padding:36px;
+}
+.card h2{margin-bottom:14px;font-size:26px}
+.card p{margin-bottom:12px}
+
+/* ===== TWO COL ===== */
+.two{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;
+}
+.side img{
+  width:100%;border-radius:26px;box-shadow:0 22px 60px rgba(0,0,0,.14);
+  object-fit:cover;
 }
 
-.hero-text p {
-    font-size: 16px;
-    max-width: 420px;
-    opacity: 0.9;
+/* ===== NAV CARDS on index ===== */
+.nav-cards{
+  margin-top:28px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
 }
-
-.hero-image img {
-    width: 100%;
-    border-radius: 26px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+.nav-card{
+  display:block;text-decoration:none;color:var(--dark);
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(0,0,0,.06);
+  padding:22px;border-radius:22px;
+  box-shadow:0 14px 40px rgba(0,0,0,.08);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
+.nav-card strong{display:block;font-size:16px}
+.nav-card span{display:block;margin-top:8px;font-size:13px;opacity:.78}
+.nav-card:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(0,0,0,.14)}
 
-/* ===== ABOUT ===== */
-.about-section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 80px 24px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+/* ===== GALLERY ===== */
+.gallery{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:14px;
 }
-
-.about-card {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 26px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+.figure{
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.08);
 }
-
-.about-card h2 {
-    margin-bottom: 20px;
+.figure img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
 }
+.col-6{grid-column:span 6}
+.col-4{grid-column:span 4}
+.col-8{grid-column:span 8}
+.col-12{grid-column:span 12}
 
-.about-card p {
-    margin-bottom: 16px;
-    line-height: 1.7;
+/* ===== MEDIA ===== */
+.media{
+  margin-top:18px;
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:26px;
+  box-shadow:0 14px 40px rgba(0,0,0,.08);
+  padding:16px;
 }
+.media h3{margin:6px 6px 12px}
+video, audio{width:100%}
 
-.about-photo img {
-    width: 100%;
-    border-radius: 26px;
-    object-fit: cover;
+/* ===== TABLE ===== */
+.table-wrap{overflow:auto;margin-top:14px}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  overflow:hidden;
+  border-radius:18px;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(0,0,0,.06);
 }
-<section class="nav-cards">
-    <a href="family.html" class="nav-card">
-        <span>Родина</span>
-        <p>Люди, які завжди поруч</p>
-    </a>
+th,td{padding:14px 14px;vertical-align:top}
+th{
+  background:rgba(125,148,142,.18);
+  text-align:left;
+  font-weight:700;
+}
+tr+tr td{border-top:1px solid rgba(0,0,0,.06)}
+td:first-child{width:26%;font-weight:600}
 
-    <a href="education.html" class="nav-card">
-        <span>Навчання</span>
-        <p>Освіта та шлях розвитку</p>
-    </a>
+/* ===== LINKS / ANCHORS ===== */
+.small-links{
+  margin-top:12px;
+  display:flex;flex-wrap:wrap;gap:12px;
+  font-size:13px;
+}
+.small-links a{color:var(--dark)}
+.small-links a:hover{color:var(--sage)}
 
-    <a href="hobbies.html" class="nav-card">
-        <span>Хобі</span>
-        <p>Те, що надихає</p>
-    </a>
-
-    <a href="dreams.html" class="nav-card">
-        <span>Мрії</span>
-        <p>Цілі та плани на майбутнє</p>
-    </a>
-</section>
 /* ===== FOOTER ===== */
-.footer {
-    text-align: center;
-    padding: 30px;
-    font-size: 14px;
-    opacity: 0.7;
-}
+.footer{padding:28px 24px;text-align:center;opacity:.75;font-size:14px}
 
 /* ===== MOBILE ===== */
-@media (max-width: 900px) {
-    .hero,
-    .about-section {
-        grid-template-columns: 1fr;
-        padding: 50px 20px;
-    }
-
-    .hero-text h1 {
-        font-size: 34px;
-    }
-
-    .menu {
-        display: none;
-    }
-}
-
-/* ===== NAV CARDS ===== */
-.nav-cards {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px 24px 80px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-
-.nav-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 24px;
-    text-decoration: none;
-    color: var(--dark);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.nav-card span {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.nav-card p {
-    margin-top: 10px;
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-.nav-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 900px) {
-    .nav-cards {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:900px){
+  .menu{display:none}
+  .hero{grid-template-columns:1fr;gap:28px;padding:46px 20px 8px}
+  .hero h1{font-size:34px}
+  .wrap{padding:40px 20px}
+  .two{grid-template-columns:1fr}
+  .nav-cards{grid-template-columns:1fr}
+  .col-6,.col-4,.col-8,.col-12{grid-column:span 12}
 }
