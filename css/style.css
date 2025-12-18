@@ -166,6 +166,15 @@ footer a:hover {
     color: var(--peach);
     text-decoration: underline;
 }
+main section ol {
+    margin-left: 25px;      /* відступ зліва */
+    margin-top: 10px;
+}
+
+main section ol li {
+    margin-bottom: 10px;    /* відстань між пунктами */
+    line-height: 1.6;
+}
 
 
 /* ===== CSS CAROUSEL (NO JS) ===== */
