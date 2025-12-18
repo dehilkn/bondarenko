@@ -1,8 +1,8 @@
 :root {
-    --dark: #3B4443;
-    --sage: #7D948E;
-    --peach: #EAAFA9;
-    --light: #EFD0CE;
+    --dark: #5C0F05;
+    --sage: rgba(87, 1, 27, 0.95);
+    --peach: #8A2E2E;
+    --light: rgba(239, 238, 198, 0.68);
     --white: #ffffff;
 }
 
@@ -19,9 +19,9 @@ body {
     line-height: 1.7;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 header {
-    background: linear-gradient(135deg, var(--dark), var(--sage));
+    background: linear-gradient(135deg, var(--sage), var(--dark));
     color: var(--white);
     padding: 30px 20px;
     border-radius: 0 0 30px 30px;
@@ -30,14 +30,17 @@ header {
 header h1 {
     text-align: center;
     margin-bottom: 15px;
+    font-weight: 700;
 }
 
+/* бігуча стрічка */
 marquee {
     margin-bottom: 20px;
     font-weight: 300;
+    opacity: 0.9;
 }
 
-/* NAV */
+/* ===== NAV ===== */
 nav ul {
     display: flex;
     justify-content: center;
@@ -50,13 +53,25 @@ nav a {
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
+    position: relative;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--peach);
+    transition: width 0.3s ease;
 }
 
-/* MAIN */
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ===== MAIN ===== */
 main {
     max-width: 1100px;
     margin: 40px auto;
@@ -68,15 +83,16 @@ section {
     padding: 30px;
     border-radius: 25px;
     margin-bottom: 40px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 15px 40px rgba(92, 15, 5, 0.15);
 }
 
 section h2 {
     margin-bottom: 20px;
     color: var(--sage);
+    font-size: 26px;
 }
 
-/* LAYOUT */
+/* ===== LAYOUT ===== */
 .content {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -88,30 +104,35 @@ section h2 {
     grid-template-columns: 1fr 1.2fr;
 }
 
-/* IMAGES */
+/* ===== IMAGES ===== */
 img {
     width: 100%;
     border-radius: 20px;
     object-fit: cover;
+    box-shadow: 0 12px 30px rgba(92, 15, 5, 0.25);
 }
 
+/* галерея */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
-/* MEDIA */
-audio, video {
+/* ===== MEDIA ===== */
+audio,
+video {
     width: 100%;
     margin-top: 20px;
     border-radius: 12px;
 }
 
-/* TABLE */
+/* ===== TABLE ===== */
 table {
     width: 100%;
     border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 18px;
 }
 
 th {
@@ -119,26 +140,34 @@ th {
     color: var(--white);
 }
 
-td, th {
+td,
+th {
     padding: 15px;
     border: 1px solid var(--light);
     vertical-align: top;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
     padding: 20px;
-    background: var(--peach);
+    background: linear-gradient(135deg, var(--dark), var(--sage));
+    color: var(--white);
     border-radius: 30px 30px 0 0;
 }
 
-/* MOBILE */
-@media (max-width: 800px) {
-    .content {
-        grid-template-columns: 1fr;
-    }
+footer a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
 }
+
+footer a:hover {
+    color: var(--peach);
+    text-decoration: underline;
+}
+
+
 /* ===== CSS CAROUSEL (NO JS) ===== */
 .carousel {
     position: relative;
@@ -178,13 +207,15 @@ footer {
     border-radius: 50%;
     margin: 0 6px;
     cursor: pointer;
+    opacity: 0.6;
 }
 
 input:checked + label {
     background: var(--dark);
+    opacity: 1;
 }
 
-/* slide logic */
+
 #slide1:checked ~ .carousel-track { transform: translateX(0); }
 #slide2:checked ~ .carousel-track { transform: translateX(-100%); }
 #slide3:checked ~ .carousel-track { transform: translateX(-200%); }
@@ -192,10 +223,4 @@ input:checked + label {
 #slide5:checked ~ .carousel-track { transform: translateX(-400%); }
 #slide6:checked ~ .carousel-track { transform: translateX(-500%); }
 
-/* mobile */
-@media (max-width: 768px) {
-    .carousel img {
-        height: 260px;
-    }
-}
 
