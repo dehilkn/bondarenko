@@ -1,50 +1,478 @@
 <!doctype html>
-<html lang="uk">
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <title>Про мене - Бондаренко Олександра</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Редактор интерактивных тестов v3</title>
+<style>
+:root{--bg:#0f172a;--panel:#111827;--muted:#94a3b8;--text:#e5e7eb;--line:#334155;--accent:#38bdf8;--ok:#22c55e;--bad:#ef4444;--warn:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#0f172a,#111827);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(15,23,42,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:20px;margin:0}.stats{color:var(--muted);font-size:14px}.wrap{max-width:1180px;margin:0 auto;padding:18px;display:grid;grid-template-columns:390px 1fr;gap:18px}.card{background:rgba(17,24,39,.92);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 12px 28px rgba(0,0,0,.25)}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}input,textarea,select{width:100%;background:#0b1220;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px;font:inherit}textarea{min-height:90px;resize:vertical}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.btn{border:1px solid var(--line);background:#182235;color:var(--text);padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:600}.btn:hover{border-color:var(--accent)}.btn.primary{background:#075985;border-color:#0284c7}.btn.ok{background:#14532d;border-color:#16a34a}.btn.bad{background:#5f1515;border-color:#dc2626}.btn.warn{background:#4a2c06;border-color:#d97706}.btn.small{padding:7px 9px;font-size:13px}.option{display:grid;grid-template-columns:28px 1fr 36px;gap:8px;align-items:center;margin:8px 0}.option input[type=checkbox],.option input[type=radio]{width:auto}.hint{font-size:13px;color:var(--muted);line-height:1.45}.preview-img,.q-img{max-width:100%;border:1px solid var(--line);border-radius:12px;margin-top:10px;background:#020617}.tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.question{border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0;background:#0b1220}.q-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.q-title{font-weight:700}.q-meta{font-size:12px;color:var(--muted);margin-top:4px}.answer{display:block;width:100%;text-align:left;margin:8px 0;padding:10px;border-radius:10px;border:1px solid var(--line);background:#111827;color:var(--text);cursor:pointer}.answer.selected{border-color:var(--accent);background:#0c4a6e}.answer.correct{border-color:var(--ok);background:#064e3b}.answer.wrong{border-color:var(--bad);background:#4c0519}.feedback{margin-top:10px;font-weight:700}.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}.empty{text-align:center;color:var(--muted);padding:50px 10px;border:1px dashed var(--line);border-radius:14px}.list-item{padding:10px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:#0b1220;cursor:pointer}.list-item:hover{border-color:var(--accent)}.list-item.active{border-color:var(--accent);background:#0c4a6e}.hidden{display:none!important}.wrap.editor-collapsed{grid-template-columns:1fr}.wrap.editor-collapsed #editorPanel{display:none}.subset-info{font-size:13px;color:var(--warn);margin:0 0 10px}.study-progress{height:12px;background:#0b1220;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:10px 0}.study-progress-fill{height:100%;background:var(--ok);width:0%}.quiz-topbar{display:flex;gap:10px;align-items:center;margin-bottom:14px}.quiz-topbar input{flex:1;min-width:180px}.quiz-topbar select{flex:0 0 210px}.quiz-shell{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:16px;align-items:start}.quiz-area{min-width:0}.control-panel{position:sticky;top:84px;background:rgba(11,18,32,.96);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 10px 24px rgba(0,0,0,.18)}.control-title{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin:0 0 10px}.control-group{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.control-group:first-child{border-top:0;padding-top:0;margin-top:0}.control-panel .btn,.control-panel select{width:100%;margin:0 0 8px}.control-panel .btn:last-child,.control-panel select:last-child{margin-bottom:0}.control-help{font-size:12px;color:var(--muted);line-height:1.35;margin-top:8px}.danger{color:#fecaca}.oktxt{color:#bbf7d0}@media(max-width:1050px){.quiz-shell{grid-template-columns:1fr}.control-panel{position:static;order:-1}.control-panel .control-group{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border-top:1px solid var(--line);padding-top:12px}.control-panel .control-title{grid-column:1/-1}.control-panel .btn,.control-panel select{margin:0}.control-help{grid-column:1/-1}}@media(max-width:900px){.wrap{grid-template-columns:1fr}header{position:static}.quiz-topbar{flex-direction:column;align-items:stretch}.quiz-topbar select{flex:auto}.control-panel{top:auto}}@media(max-width:560px){.control-panel .control-group{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-
 <header>
-    <h1>Автобіографічний сайт</h1>
-    <marquee>Про мене • Родина • Навчання • Хобі • Мрії</marquee>
-    <nav>
-        <ul>
-            <li><a href="index.html">Про мене</a></li>
-            <li><a href="family.html">Родина</a></li>
-            <li><a href="education.html">Навчання</a></li>
-            <li><a href="hobbies.html">Хобі</a></li>
-            <li><a href="dreams.html">Мрії</a></li>
-        </ul>
-    </nav>
+  <div><h1>Редактор интерактивных тестов v3</h1><div class="stats" id="stats">Вопросов: 0</div></div>
+  <div class="tools">
+    <button class="btn small" id="toggleEditorBtn">Свернуть добавление</button>
+    <button class="btn small" id="exportBtn">Экспорт JSON</button>
+    <label class="btn small" for="importFile" style="margin:0">Импорт JSON</label><input id="importFile" type="file" accept="application/json" class="hidden">
+    <button class="btn small warn" id="clearAllBtn">Очистить всё</button>
+  </div>
 </header>
 
-<main>
-    <section>
-        <div class="content">
-            <div>
-                <h2>Про мене</h2>
+<div class="wrap" id="layoutWrap">
+  <section class="card" id="editorPanel">
+    <h2 style="margin:0 0 8px;font-size:18px">Добавить / изменить вопрос</h2>
+    <div class="hint">Все данные сохраняются в браузере автоматически через localStorage. Картинки сохраняются прямо внутри теста как base64.</div>
 
-                <p>
-                    Мене звати Бондаренко Олександра Олегівна. Мені 18 років.
-                    Я студентка Донецького національного університету імені Василя Стуса.
-                    Родом з Чернівецької області, міста <u><a href="https://uk.wikipedia.org/wiki/%D0%9D%D0%BE%D0%B2%D0%BE%D0%B4%D0%BD%D1%96%D1%81%D1%82%D1%80%D0%BE%D0%B2%D1%81%D1%8C%D0%BA">Новодністровськ</a></u>.
-                    Наразі навчаюся та прагну професійного розвитку.
-                </p>
-            </div>
+    <input type="hidden" id="editId">
+    <label>Текст вопроса</label>
+    <textarea id="questionText" placeholder="Например: Teleso hmotnosti m má rýchlosť v..."></textarea>
 
-            <div class="gallery">
-                <img src="assets/img/author2.jpg">
-                <img src="assets/img/author1.jpg">
-            </div>
+    <div class="row">
+      <div><label>Тема / категория</label><input id="category" placeholder="Mechanika, Termodynamika..."></div>
+      <div><label>Тип ответа</label><select id="answerType"><option value="single">Один правильный</option><option value="multiple">Несколько правильных</option></select></div>
+    </div>
+
+    <label>Картинка к вопросу, если нужна</label>
+    <input id="imageInput" type="file" accept="image/*">
+    <img id="imagePreview" class="preview-img hidden" alt="preview">
+    <button class="btn small bad hidden" id="removeImageBtn" type="button">Удалить картинку</button>
+
+    <label>Варианты ответа</label>
+    <div id="optionsBox"></div>
+    <div class="row">
+      <button class="btn small" id="addOptionBtn" type="button">+ вариант</button>
+      <button class="btn small" id="removeOptionBtn" type="button">- вариант</button>
+    </div>
+    <div class="hint" style="margin-top:8px">Отметь правильный вариант. Для режима “несколько правильных” можно выбрать несколько галочек.</div>
+
+    <label>Пояснение после проверки, необязательно</label>
+    <textarea id="explanation" placeholder="Коротко объясни правильный ответ..."></textarea>
+
+    <div class="row" style="margin-top:14px">
+      <button class="btn primary" id="saveBtn" type="button">Сохранить вопрос</button>
+      <button class="btn" id="resetFormBtn" type="button">Новый</button>
+    </div>
+    <div id="formMsg" class="hint" style="margin-top:10px"></div>
+
+    <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+    <h3 style="margin:0 0 8px;font-size:16px">Список вопросов</h3>
+    <input id="listSearch" placeholder="Поиск по вопросам...">
+    <div id="questionList"></div>
+  </section>
+
+  <main class="card">
+    <div class="quiz-topbar">
+      <input id="search" placeholder="Поиск в тесте...">
+      <select id="mode"><option value="all">Все вопросы</option><option value="images">Только с картинками</option><option value="unanswered">Без ответа</option><option value="wrong">Ошибки</option></select>
+    </div>
+
+    <div class="quiz-shell">
+      <section class="quiz-area">
+        <div id="subsetInfo" class="subset-info hidden"></div>
+        <div id="quiz"></div>
+      </section>
+
+      <aside class="control-panel" aria-label="Панель управления тестом">
+        <div class="control-group">
+          <div class="control-title">Practice</div>
+          <button class="btn small primary" id="random20Btn">Случайные 20</button>
+          <button class="btn small" id="showAllBtn">Показать все</button>
+          <button class="btn small" id="shuffleBtn">Перемешать</button>
         </div>
-    </section>
-</main>
 
-<footer><a href="family.html">Вперед ⟶</a></footer>
+        <div class="control-group">
+          <div class="control-title">Exam</div>
+          <button class="btn small ok" id="examBtn">Skuska</button>
+          <button class="btn small bad hidden" id="finishExamBtn">Завершить скушку</button>
+        </div>
+
+        <div class="control-group">
+          <div class="control-title">Study</div>
+          <select id="studyOrder"><option value="order">Study: по порядку</option><option value="random">Study: рандом</option></select>
+          <button class="btn small primary" id="studyBtn">Study Mode</button>
+          <button class="btn small bad hidden" id="exitStudyBtn">Выйти из Study</button>
+          <div class="control-help">Клавіші: 1–9 для відповіді, Enter / Space / → для переходу далі.</div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-title">Progress</div>
+          <button class="btn small" id="resetProgressBtn">Сбросить ответы</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<script>
+const STORAGE_KEY='customQuizBuilder_v1';
+const STUDY_STORAGE_KEY='customQuizBuilder_study_v1';
+let state={questions:[], progress:{}};
+let imageData='';
+let order=[];
+let randomSubset=null;
+let optionOrder={};
+let examMode=false;
+let examFinished=false;
+let examIds=[];
+let examProgress={};
+let examEndTime=0;
+let examTimer=null;
+let studyMode=false;
+let studyIds=[];
+let studyBlocks=[];
+let studyBlockIndex=0;
+let studyQueue=[];
+let studyRetry=[];
+let studyCurrentId=null;
+let studySelected={};
+let studyAnsweredWrong=false;
+let studyAnswered=false;
+let studyLastCorrect=false;
+let studyFinished=false;
+let studyMastered=new Set();
+const $=id=>document.getElementById(id);
+function uid(){return 'q_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8)}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));updateStats();}
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=JSON.parse(raw)}catch(e){state={questions:[],progress:{}}}}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function updateStats(){const total=state.questions.length;const answered=Object.keys(state.progress||{}).length;const wrong=Object.values(state.progress||{}).filter(p=>p&&p.correct===false).length;$('stats').textContent=`Questions: ${total} | Answered: ${answered} | Wrong: ${wrong}`}
+function initOptions(n=4){$('optionsBox').innerHTML='';for(let i=0;i<n;i++)addOption('',false)}
+function addOption(text='',checked=false){const type=$('answerType').value==='single'?'radio':'checkbox';const name='correctOption';const div=document.createElement('div');div.className='option';div.innerHTML=`<input type="${type}" name="${name}" ${checked?'checked':''}><input class="optText" placeholder="Вариант ответа" value="${esc(text)}"><button class="btn small bad" type="button">×</button>`;div.querySelector('button').onclick=()=>{if($('optionsBox').children.length>2)div.remove()};$('optionsBox').appendChild(div)}
+function rebuildCorrectInputs(){const old=[...document.querySelectorAll('#optionsBox .option')].map(o=>({text:o.querySelector('.optText').value,checked:o.querySelector('input[type=radio],input[type=checkbox]').checked}));$('optionsBox').innerHTML='';old.forEach((o,i)=>addOption(o.text,$('answerType').value==='single'? (old.findIndex(x=>x.checked)===i):o.checked));}
+$('answerType').addEventListener('change',rebuildCorrectInputs);
+$('addOptionBtn').onclick=()=>addOption();
+$('removeOptionBtn').onclick=()=>{if($('optionsBox').children.length>2)$('optionsBox').lastElementChild.remove()};
+$('imageInput').onchange=e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{imageData=reader.result;$('imagePreview').src=imageData;$('imagePreview').classList.remove('hidden');$('removeImageBtn').classList.remove('hidden')};reader.readAsDataURL(file)};
+$('removeImageBtn').onclick=()=>{imageData='';$('imageInput').value='';$('imagePreview').src='';$('imagePreview').classList.add('hidden');$('removeImageBtn').classList.add('hidden')};
+function resetForm(){ $('editId').value=''; $('questionText').value=''; $('category').value=''; $('answerType').value='single'; $('explanation').value=''; imageData=''; $('imageInput').value=''; $('imagePreview').classList.add('hidden'); $('removeImageBtn').classList.add('hidden'); initOptions(4); $('formMsg').textContent='';}
+$('resetFormBtn').onclick=resetForm;
+function collectForm(){const text=$('questionText').value.trim();const options=[...document.querySelectorAll('#optionsBox .option')].map((o,i)=>({text:o.querySelector('.optText').value.trim(),correct:o.querySelector('input[type=radio],input[type=checkbox]').checked})).filter(o=>o.text);const correctCount=options.filter(o=>o.correct).length;if(!text)return {error:'Напиши текст вопроса.'};if(options.length<2)return {error:'Минимум 2 варианта ответа.'};if(correctCount<1)return {error:'Отметь хотя бы один правильный ответ.'};if($('answerType').value==='single'&&correctCount!==1)return {error:'Для режима одного ответа должен быть ровно 1 правильный вариант.'};return {id:$('editId').value||uid(),text,category:$('category').value.trim(),type:$('answerType').value,image:imageData,options,explanation:$('explanation').value.trim()}}
+$('saveBtn').onclick=()=>{const q=collectForm();if(q.error){$('formMsg').innerHTML='<span class="danger">'+esc(q.error)+'</span>';return}const idx=state.questions.findIndex(x=>x.id===q.id);if(idx>=0)state.questions[idx]=q;else state.questions.push(q);saveState();resetForm();renderAll();$('formMsg').innerHTML='<span class="oktxt">Сохранено.</span>'};
+function editQuestion(id){const q=state.questions.find(x=>x.id===id);if(!q)return;$('editId').value=q.id;$('questionText').value=q.text;$('category').value=q.category||'';$('answerType').value=q.type||'single';$('explanation').value=q.explanation||'';imageData=q.image||'';if(imageData){$('imagePreview').src=imageData;$('imagePreview').classList.remove('hidden');$('removeImageBtn').classList.remove('hidden')}else{$('imagePreview').classList.add('hidden');$('removeImageBtn').classList.add('hidden')}$('optionsBox').innerHTML='';q.options.forEach(o=>addOption(o.text,o.correct));window.scrollTo({top:0,behavior:'smooth'})}
+function deleteQuestion(id){if(!confirm('Удалить вопрос?'))return;state.questions=state.questions.filter(q=>q.id!==id);delete state.progress[id];saveState();renderAll()}
+function renderList(){const term=$('listSearch').value.toLowerCase().trim();let arr=state.questions.filter(q=>!term||q.text.toLowerCase().includes(term)||(q.category||'').toLowerCase().includes(term));$('questionList').innerHTML=arr.length?arr.map((q,i)=>`<div class="list-item ${$('editId').value===q.id?'active':''}" onclick="editQuestion('${q.id}')"><b>${i+1}. ${esc(q.text).slice(0,70)}${q.text.length>70?'...':''}</b><div class="q-meta">${esc(q.category||'Без категории')} · ${q.type==='multiple'?'несколько':'один'} ответ · ${q.image?'с картинкой':'без картинки'}</div><button class="btn small bad" onclick="event.stopPropagation();deleteQuestion('${q.id}')">Удалить</button></div>`).join(''):'<div class="empty">Вопросов пока нет</div>'}
+$('listSearch').oninput=renderList;
+function filteredQuestions(){const term=$('search').value.toLowerCase().trim();const mode=$('mode').value;let arr=[...state.questions];if(randomSubset)arr=arr.filter(q=>randomSubset.includes(q.id));if(order.length){const pos=new Map(order.map((id,i)=>[id,i]));arr.sort((a,b)=>(pos.get(a.id)??999999)-(pos.get(b.id)??999999))}if(term)arr=arr.filter(q=>q.text.toLowerCase().includes(term)||(q.category||'').toLowerCase().includes(term)||q.options.some(o=>o.text.toLowerCase().includes(term)));if(mode==='images')arr=arr.filter(q=>q.image);if(mode==='unanswered')arr=arr.filter(q=>!state.progress[q.id]);if(mode==='wrong')arr=arr.filter(q=>state.progress[q.id]&&state.progress[q.id].correct===false);return arr}
+function isCorrect(q,selected){const good=q.options.map((o,i)=>o.correct?i:null).filter(i=>i!==null).sort().join(',');const got=[...selected].sort().join(',');return good===got}
+function shuffledIndexes(length){return Array.from({length},(_,i)=>i).sort(()=>Math.random()-.5)}
+function shuffleOptionsFor(ids){optionOrder={};ids.forEach(id=>{const q=state.questions.find(x=>x.id===id);if(q)optionOrder[id]=shuffledIndexes(q.options.length)})}
 
 
+function stopExam(){
+  examMode=false;examFinished=false;examIds=[];examProgress={};
+  if(examTimer)clearInterval(examTimer);
+  $('finishExamBtn').classList.add('hidden');
+  $('examBtn').textContent='Skuska';
+}
+function stopStudy(){
+  if(studyMode&&!studyFinished)saveStudySession();
+  studyMode=false;
+  $('exitStudyBtn').classList.add('hidden');
+}
+function clearStudySession(){localStorage.removeItem(STUDY_STORAGE_KEY)}
+function saveStudySession(){
+  if(!studyIds.length||studyFinished)return;
+  const data={
+    studyIds,studyBlocks,studyBlockIndex,studyQueue,studyRetry,studyCurrentId,studySelected,
+    studyAnsweredWrong,studyAnswered,studyLastCorrect,studyMastered:[...studyMastered],optionOrder,
+    orderValue:$('studyOrder')?$('studyOrder').value:'order',savedAt:Date.now()
+  };
+  localStorage.setItem(STUDY_STORAGE_KEY,JSON.stringify(data));
+}
+function loadStudySession(){
+  try{
+    const raw=localStorage.getItem(STUDY_STORAGE_KEY);if(!raw)return false;
+    const data=JSON.parse(raw);
+    if(!data.studyIds||!data.studyIds.length)return false;
+    const existing=new Set(state.questions.map(q=>q.id));
+    if(!data.studyIds.every(id=>existing.has(id)))return false;
+    studyIds=data.studyIds||[];studyBlocks=data.studyBlocks||chunk(studyIds,7);studyBlockIndex=data.studyBlockIndex||0;
+    studyQueue=data.studyQueue||[];studyRetry=data.studyRetry||[];studyCurrentId=data.studyCurrentId||null;studySelected=data.studySelected||{};
+    studyAnsweredWrong=!!data.studyAnsweredWrong;studyAnswered=!!data.studyAnswered;studyLastCorrect=!!data.studyLastCorrect;studyFinished=false;
+    studyMastered=new Set(data.studyMastered||[]);optionOrder=data.optionOrder||{};
+    if($('studyOrder')&&data.orderValue)$('studyOrder').value=data.orderValue;
+    return true;
+  }catch(e){return false}
+}
+function resetStudyVars(){
+  studyMode=false;studyIds=[];studyBlocks=[];studyBlockIndex=0;studyQueue=[];studyRetry=[];studyCurrentId=null;studySelected={};
+  studyAnsweredWrong=false;studyAnswered=false;studyLastCorrect=false;studyFinished=false;studyMastered=new Set();
+}
+function chunk(arr,size){const out=[];for(let i=0;i<arr.length;i+=size)out.push(arr.slice(i,i+size));return out}
+function startStudy(forceNew=false){
+  if(!state.questions.length){alert('Сначала добавь вопросы.');return}
+  stopExam();
+  randomSubset=null;order=[];
+  if(!forceNew&&loadStudySession()){
+    studyMode=true;studyFinished=false;$('search').value='';$('mode').value='all';$('exitStudyBtn').classList.remove('hidden');renderQuiz();return;
+  }
+  clearStudySession();optionOrder={};
+  const base=state.questions.map(q=>q.id);
+  studyIds=$('studyOrder').value==='random'?[...base].sort(()=>Math.random()-.5):base;
+  studyBlocks=chunk(studyIds,7);
+  studyBlockIndex=0;
+  studyMastered=new Set();
+  studySelected={};
+  studyAnsweredWrong=false;studyAnswered=false;studyLastCorrect=false;studyFinished=false;
+  studyMode=true;
+  $('search').value='';
+  $('mode').value='all';
+  $('exitStudyBtn').classList.remove('hidden');
+  startStudyBlock();
+}
+function startStudyBlock(){
+  studyQueue=[...(studyBlocks[studyBlockIndex]||[])];
+  studyRetry=[];
+  nextStudyQuestion();
+}
+function nextStudyQuestion(){
+  if(!studyMode)return;
+  if(studyCurrentId&&studyAnswered&&studyLastCorrect)studyMastered.add(studyCurrentId);
+  if(studyQueue.length===0){
+    if(studyRetry.length>0){studyQueue=[...studyRetry];studyRetry=[];}
+    else{
+      studyBlockIndex++;
+      if(studyBlockIndex>=studyBlocks.length){renderStudyFinished();return}
+      startStudyBlock();return;
+    }
+  }
+  studyCurrentId=studyQueue.shift();
+  const q=state.questions.find(x=>x.id===studyCurrentId);
+  if(q&&!optionOrder[q.id])optionOrder[q.id]=shuffledIndexes(q.options.length);
+  studySelected[studyCurrentId]=[];
+  studyAnsweredWrong=false;studyAnswered=false;studyLastCorrect=false;
+  saveStudySession();
+  renderQuiz();
+}
+function chooseStudy(qid,idx){
+  const q=state.questions.find(x=>x.id===qid);if(!q||studyAnswered)return;
+  let selected=new Set(studySelected[qid]||[]);
+  if(q.type==='single'){
+    selected=new Set([idx]);studySelected[qid]=[...selected];
+    studyLastCorrect=isCorrect(q,selected);studyAnswered=true;studyAnsweredWrong=!studyLastCorrect;
+    if(!studyLastCorrect&&!studyRetry.includes(qid))studyRetry.push(qid);
+    saveStudySession();renderQuiz();
+  }else{
+    selected.has(idx)?selected.delete(idx):selected.add(idx);
+    studySelected[qid]=[...selected];saveStudySession();renderQuiz();
+  }
+}
+function checkStudyMultiple(qid){
+  const q=state.questions.find(x=>x.id===qid);if(!q||studyAnswered)return;
+  const selected=new Set(studySelected[qid]||[]);
+  if(selected.size===0){alert('Выбери хотя бы один вариант.');return}
+  studyLastCorrect=isCorrect(q,selected);studyAnswered=true;studyAnsweredWrong=!studyLastCorrect;
+  if(!studyLastCorrect&&!studyRetry.includes(qid))studyRetry.push(qid);
+  saveStudySession();renderQuiz();
+}
+function renderStudyFinished(){
+  studyFinished=true;clearStudySession();
+  $('subsetInfo').classList.remove('hidden');
+  $('subsetInfo').innerHTML=`Study Mode finished: 100% mastered (${studyIds.length}/${studyIds.length}).`;
+  $('quiz').innerHTML=`<div class="question"><div class="q-title">Готово ✅</div><div class="q-meta">Все вопросы пройдены правильно. Ошибочные вопросы внутри каждого блока повторялись до правильного ответа.</div><button class="btn small primary" onclick="startStudy(true)">Начать заново</button> <button class="btn small" onclick="showAllNormal()">Вернуться к тесту</button></div>`;
+}
+function renderStudy(){
+  const q=state.questions.find(x=>x.id===studyCurrentId);
+  if(!q){renderStudyFinished();return}
+  const mastered=studyMastered.size;
+  const percent=studyIds.length?Math.round(mastered/studyIds.length*100):0;
+  const blockTotal=studyBlocks[studyBlockIndex]?.length||0;
+  const blockDone=blockTotal-studyQueue.length-(studyCurrentId?1:0);
+  $('subsetInfo').classList.remove('hidden');
+  $('subsetInfo').innerHTML=`Study Mode · Block ${studyBlockIndex+1}/${studyBlocks.length} · progress ${percent}% (${mastered}/${studyIds.length})<div class="study-progress"><div class="study-progress-fill" style="width:${percent}%"></div></div>`;
+  const selected=new Set(studySelected[q.id]||[]);
+  const checked=studyAnswered;
+  const optionButtons=(optionOrder[q.id]||q.options.map((_,i)=>i)).map(i=>{
+    const o=q.options[i];
+    let cls='answer';
+    if(selected.has(i))cls+=' selected';
+    if(checked&&o.correct)cls+=' correct';
+    if(checked&&selected.has(i)&&!o.correct)cls+=' wrong';
+    return `<button class="${cls}" onclick="chooseStudy('${q.id}',${i})" ${checked?'disabled style="cursor:default"':''}>${q.type==='multiple'?(selected.has(i)?'☑':'☐'):(selected.has(i)?'◉':'○')} ${esc(o.text)}</button>`;
+  }).join('');
+  const correctTexts=q.options.filter(o=>o.correct).map(o=>esc(o.text)).join('; ');
+  $('quiz').innerHTML=`<article class="question"><div class="q-head"><div><div class="q-title">${esc(q.text)}</div><div class="q-meta">Question in block: ${Math.min(blockDone+1,blockTotal)}/${blockTotal} · ${q.type==='multiple'?'multiple correct':'one correct'}</div></div></div>${q.image?`<img class="q-img" src="${q.image}" alt="question image">`:''}<div>${optionButtons}</div>${q.type==='multiple'&&!checked?`<button class="btn small ok" onclick="checkStudyMultiple('${q.id}')">Проверить выбранные</button>`:''}${checked?`<div class="feedback ${studyLastCorrect?'ok':'bad'}">${studyLastCorrect?'Правильно ✅':'Неправильно ❌ Правильный ответ: '+correctTexts}</div>${q.explanation?`<div class="hint">${esc(q.explanation)}</div>`:''}<button class="btn small primary" onclick="nextStudyQuestion()">Следующий вопрос →</button><div class="hint" style="margin-top:8px">Можна натиснути Enter, Space або →</div>`:''}</article>`;
+  updateStats();
+}
+function showAllNormal(){
+  stopStudy();stopExam();randomSubset=null;order=[];optionOrder={};$('search').value='';$('mode').value='all';renderQuiz();
+}
+
+function formatTime(ms){
+  const total=Math.max(0,Math.ceil(ms/1000));
+  const m=Math.floor(total/60);
+  const sec=total%60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+function updateExamTimer(){
+  if(!examMode||examFinished)return;
+  const left=examEndTime-Date.now();
+  $('subsetInfo').classList.remove('hidden');
+  $('subsetInfo').innerHTML=`Skuska start: 20 questions · time left: ${formatTime(left)}. Result will be available only at the end.`;
+  if(left<=0)finishExam(true);
+}
+function startExam(){
+  stopStudy();
+  if(!state.questions.length){alert('Сначала добавь вопросы.');return}
+  const ids=state.questions.map(q=>q.id).sort(()=>Math.random()-.5).slice(0,Math.min(20,state.questions.length));
+  examMode=true;
+  examFinished=false;
+  examIds=ids;
+  examProgress={};
+  randomSubset=ids;
+  order=[...ids].sort(()=>Math.random()-.5);
+  shuffleOptionsFor(ids);
+  examEndTime=Date.now()+40*60*1000;
+  $('search').value='';
+  $('mode').value='all';
+  $('finishExamBtn').classList.remove('hidden');
+  $('examBtn').textContent='New Skuska';
+  if(examTimer)clearInterval(examTimer);
+  examTimer=setInterval(updateExamTimer,1000);
+  updateExamTimer();
+  renderQuiz();
+}
+function finishExam(auto=false){
+  if(!examMode||examFinished)return;
+  examFinished=true;
+  if(examTimer)clearInterval(examTimer);
+  examIds.forEach(id=>{
+    const q=state.questions.find(x=>x.id===id);
+    const selected=new Set((examProgress[id]&&examProgress[id].selected)||[]);
+    examProgress[id]={selected:[...selected],correct:q?isCorrect(q,selected):false};
+  });
+  $('finishExamBtn').classList.add('hidden');
+  $('examBtn').textContent='Skuska';
+  renderQuiz();
+  const correct=Object.values(examProgress).filter(p=>p.correct).length;
+  $('subsetInfo').classList.remove('hidden');
+  $('subsetInfo').innerHTML=`${auto?'Time is up. ':''}Exam finished: ${correct} out of ${examIds.length} correct. See below for correct answers and mistakes.`;
+}
+
+function choose(qid,idx){
+  const q=state.questions.find(x=>x.id===qid);
+  if(!q)return;
+
+  if(examMode&&!examFinished){
+    let selected=new Set((examProgress[qid]&&examProgress[qid].selected)||[]);
+    if(q.type==='single')selected=new Set([idx]);
+    else selected.has(idx)?selected.delete(idx):selected.add(idx);
+    examProgress[qid]={selected:[...selected]};
+    renderQuiz();
+    return;
+  }
+
+  let selected=new Set((state.progress[qid]&&state.progress[qid].selected)||[]);
+
+  if(q.type==='single'){
+    selected=new Set([idx]);
+    state.progress[qid]={selected:[...selected],correct:isCorrect(q,selected)};
+  }else{
+    selected.has(idx)?selected.delete(idx):selected.add(idx);
+    // Для вопросов с несколькими правильными ответами выбор НЕ проверяется автоматически.
+    // Проверка запускается только кнопкой «Проверить выбранные».
+    state.progress[qid]={selected:[...selected]};
+  }
+
+  saveState();
+  renderQuiz();
+}
+function checkMultiple(qid){
+  if(examMode&&!examFinished)return;
+  const q=state.questions.find(x=>x.id===qid);
+  if(!q)return;
+  let selected=new Set((state.progress[qid]&&state.progress[qid].selected)||[]);
+  if(selected.size===0){
+    alert('Выбери хотя бы один вариант.');
+    return;
+  }
+  state.progress[qid]={selected:[...selected],correct:isCorrect(q,selected)};
+  saveState();
+  renderQuiz();
+}
+function renderQuiz(){
+  if(studyMode){renderStudy();return}
+  const arr=filteredQuestions();
+  if(examMode&&!examFinished)updateExamTimer();
+  else if(!examMode){
+    $('subsetInfo').classList.toggle('hidden',!randomSubset);
+    $('subsetInfo').textContent=randomSubset?`Активен случайный тест: ${randomSubset.length} вопросов из ${state.questions.length}.`:'';
+  }
+  if(!arr.length){$('quiz').innerHTML='<div class="empty">Пока пусто. Добавь первый вопрос слева.</div>';updateStats();return}
+  $('quiz').innerHTML=arr.map((q,n)=>{
+    const p=examMode?(examProgress[q.id]||{}):state.progress[q.id];
+    const selected=new Set((p&&p.selected)||[]);
+    const checked=examMode?examFinished:(p&&typeof p.correct==='boolean');
+    const editButtons=examMode?'':`<div class="row" style="flex:0 0 auto"><button class="btn small" onclick="editQuestion('${q.id}')">Ред.</button><button class="btn small bad" onclick="deleteQuestion('${q.id}')">Удал.</button></div>`;
+    const optionButtons=(optionOrder[q.id]||q.options.map((_,i)=>i)).map(i=>{
+      const o=q.options[i];
+      let cls='answer';
+      if(selected.has(i))cls+=' selected';
+      if(checked&&o.correct)cls+=' correct';
+      if(checked&&selected.has(i)&&!o.correct)cls+=' wrong';
+      return `<button class="${cls}" onclick="choose('${q.id}',${i})">${q.type==='multiple'?(selected.has(i)?'☑':'☐'):(selected.has(i)?'◉':'○')} ${esc(o.text)}</button>`;
+    }).join('');
+    const multipleCheck=(!examMode&&q.type==='multiple')?`<button class="btn small ok" onclick="checkMultiple('${q.id}')">Проверить выбранные</button>`:'';
+    const feedback=checked?`<div class="feedback ${p.correct?'ok':'bad'}">${p.correct?'Correct':'Wrong'}</div>`:'';
+    const explanation=checked&&q.explanation?`<div class="hint">${esc(q.explanation)}</div>`:'';
+    return `<article class="question"><div class="q-head"><div><div class="q-title">${n+1}. ${esc(q.text)}</div><div class="q-meta">${esc(q.category||'No category')} · ${q.type==='multiple'?'multiple correct':'one correct'}${q.image?' · image':''}</div></div>${editButtons}</div>${q.image?`<img class="q-img" src="${q.image}" alt="question image">`:''}<div>${optionButtons}</div>${multipleCheck}${feedback}${explanation}</article>`;
+  }).join('');
+  if(examMode&&examFinished){
+    const correct=Object.values(examProgress).filter(p=>p.correct).length;
+    $('quiz').innerHTML=`<div class="question"><div class="q-title">Skuska Result: ${correct} / ${examIds.length}</div><div class="q-meta">Green indicates correct answers, red indicates your mistakes.</div></div>`+$('quiz').innerHTML;
+  }
+  updateStats();
+}
+function renderAll(){renderList();renderQuiz();updateStats()}
+$('search').oninput=renderQuiz;$('mode').onchange=renderQuiz;
+
+$('random20Btn').onclick=()=>{
+  if(!state.questions.length){alert('Сначала добавь вопросы.');return}
+  const ids=state.questions.map(q=>q.id).sort(()=>Math.random()-.5).slice(0,Math.min(20,state.questions.length));
+  randomSubset=ids;
+  order=[...ids].sort(()=>Math.random()-.5);
+  shuffleOptionsFor(ids);
+  $('search').value='';
+  $('mode').value='all';
+  renderQuiz();
+};
+$('showAllBtn').onclick=showAllNormal;
+$('toggleEditorBtn').onclick=()=>{
+  const wrap=$('layoutWrap');
+  const collapsed=wrap.classList.toggle('editor-collapsed');
+  $('toggleEditorBtn').textContent=collapsed?'Show addition':'Collapse addition';
+};
+$('shuffleBtn').onclick=()=>{const base=randomSubset||state.questions.map(q=>q.id);order=[...base].sort(()=>Math.random()-.5);shuffleOptionsFor(base);renderQuiz()};
+$('examBtn').onclick=startExam;
+$('studyBtn').onclick=()=>startStudy(false);
+$('exitStudyBtn').onclick=showAllNormal;
+$('finishExamBtn').onclick=()=>finishExam(false);
+$('resetProgressBtn').onclick=()=>{if(confirm('Сбросить все ответы?')){state.progress={};saveState();renderQuiz()}};
+$('clearAllBtn').onclick=()=>{if(confirm('Удалить все вопросы и ответы?')){state={questions:[],progress:{}};order=[];randomSubset=null;optionOrder={};examMode=false;examFinished=false;examIds=[];examProgress={};clearStudySession();resetStudyVars();$('exitStudyBtn').classList.add('hidden');if(examTimer)clearInterval(examTimer);saveState();resetForm();renderAll()}};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state.questions,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my_questions.json';a.click();URL.revokeObjectURL(a.href)};
+$('importFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);const qs=Array.isArray(data)?data:(data.questions||[]);if(!Array.isArray(qs))throw new Error('bad');const cleaned=qs.map(q=>({...q,id:q.id||uid(),options:(q.options||[]).filter(o=>o.text)})).filter(q=>q.text&&q.options&&q.options.length>=2);state.questions=cleaned;state.progress={};randomSubset=null;order=[];optionOrder={};clearStudySession();resetStudyVars();saveState();resetForm();renderAll();alert('Импортировано вопросов: '+cleaned.length)}catch(err){alert('Не удалось импортировать JSON.')}};reader.readAsText(f)};
+window.editQuestion=editQuestion;window.deleteQuestion=deleteQuestion;window.choose=choose;window.checkMultiple=checkMultiple;window.startExam=startExam;window.finishExam=finishExam;window.startStudy=startStudy;window.chooseStudy=chooseStudy;window.checkStudyMultiple=checkStudyMultiple;window.nextStudyQuestion=nextStudyQuestion;window.showAllNormal=showAllNormal;
+document.addEventListener('keydown',e=>{
+  if(!studyMode)return;
+  const tag=(e.target&&e.target.tagName||'').toLowerCase();
+  if(['input','textarea','select'].includes(tag))return;
+  const q=state.questions.find(x=>x.id===studyCurrentId);
+  if(!q)return;
+  if(studyAnswered&&['Enter',' ','ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();nextStudyQuestion();return}
+  if(!studyAnswered&&/^[1-9]$/.test(e.key)){
+    const pos=Number(e.key)-1;
+    const displayed=optionOrder[q.id]||q.options.map((_,i)=>i);
+    if(pos<displayed.length){e.preventDefault();chooseStudy(q.id,displayed[pos]);}
+    return;
+  }
+  if(!studyAnswered&&q.type==='multiple'&&['Enter',' '].includes(e.key)){e.preventDefault();checkStudyMultiple(q.id);}
+});
+loadState();initOptions(4);renderAll();
+</script>
 </body>
 </html>
